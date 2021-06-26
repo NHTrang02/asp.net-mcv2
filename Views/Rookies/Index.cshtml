@@ -1,0 +1,50 @@
+﻿@using Models;
+
+@{
+    ViewData["Title"] = "Rookies";
+}
+<h1 class="d-inline-block">Rookies</h1>
+<a href="@Url.Action("Create","Rookies")" class="btn btn-primary float-right"><i class="fas fa-plus mr-2"></i>Create New Person</a>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Id</th>
+      <th scope="col">FullName</th>
+      <th scope="col">Gender</th>
+      <th scope="col">DateOfBirth</th>
+      <th scope="col">Age</th>
+      <th class="text-center" scope="col">Actions</th>
+
+
+    </tr>
+  </thead>
+<tbody>
+        @{
+            var index = 1;
+            foreach (var members in Model)
+            {
+            <tr>
+                <th scope="row">@(index++)</th>
+                <td>@members.Id</td>
+                <td>@members.FullName</td>
+                <td>@members.Gender</td>
+                <td>@members.DateOfBirth.ToString("dd/MM/yyyy")</td>
+                <td>@members.Age</td>
+
+                <td class="text-center" style="width: 200px;">
+                  <a href="@Url.Action("Edit","Rookies", new {id=@members.Id})" class="btn btn-secondary btn-sm" role="button" aria-pressed="true"><i
+                    class="fas fa-pencil-alt mr-2"></i>Edit
+                  </a>
+                  <a href="@Url.Action("Delete","Rookies", new {id=@members.Id})" class="btn btn-danger btn-sm" role="button" aria-pressed="true"><i
+                    class="fas fa-trash-alt mr-2"></i>Delete
+                  </a>
+                </td>
+            </tr>
+            }
+        }
+</tbody>
+</table>
+
+
+
